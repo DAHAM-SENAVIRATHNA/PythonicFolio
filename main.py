@@ -1,4 +1,5 @@
 import streamlit as st
+import pandas
 
 st.set_page_config(layout="wide")
 
@@ -56,8 +57,24 @@ with col2:
     """
 
     st.info(content1)
-    st.write("Skills")
+    st.subheader("Skills")
     st.write(content2)
 
-content3 = "- Below you can find some of the projects I have built"
-st.write(content3)
+content3 = "projects "
+st.header(content3)
+
+col3, empty, col4 = st.columns([2, 0.5, 2])
+
+df = pandas.read_csv("data.csv", sep=";")
+with col3:
+    for index, row in df[:2].iterrows():
+        st.subheader(row["title"])
+        st.write(row["description"])
+        st.write(f"[source code]({row['url']})")
+
+with col4:
+    for index, row in df[2:].iterrows():
+        st.subheader(row["title"])
+        st.write(row["description"])
+        st.write(f"[source code]({row['url']})")
+
