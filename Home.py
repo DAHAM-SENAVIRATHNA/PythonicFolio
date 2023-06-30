@@ -3,7 +3,7 @@ import pandas
 
 st.set_page_config(layout="wide")
 
-col1, empty, col2 = st.columns([1, 0.2, 2])
+col1, empty1, col2 = st.columns([1, 0.2, 2])
 with col1:
     st.markdown(
         """
@@ -17,10 +17,11 @@ with col1:
         unsafe_allow_html=True
     )
 
-    st.image("images/profile.png", width=350)
+    st.image("images/profile.png", width=300)
     st.header("Contact")
     content3 = """
     E-mail:   nayanads2000@gmail.com\n
+    Github:   https://github.com/DAHAM-SENAVIRATHNA  
     linkedin: https://www.linkedin.com/in/nayana-senavirathna-6964941b3/
     """
     st.write(content3)
@@ -40,12 +41,11 @@ with col2:
         unsafe_allow_html=True
     )
     content1 = """
-     Welcome to my portfolio!\n
-     I am an ambitious and dedicated undergraduate student pursuing a 
-     Bachelor of Information and Communication Technology (BICT) degree at the University of Kelaniya, specializing in the 
-     Software System pathway. This portfolio showcases my skills, projects, and achievements as I embark on a journey to become a 
-     proficient software developer.
-    """
+    Welcome to my portfolio!\n 
+    I am an ambitious and dedicated undergraduate student pursuing a 
+    Bachelor of Information and Communication Technology (BICT) degree at the University of Kelaniya, specializing in 
+    the Software System pathway. This portfolio showcases my skills, projects, and achievements as I embark on a 
+    journey to become a proficient software developer. """
 
     content2 = """
     1. Programming Languages: HTML5, CSS3, JavaScript, Python, Kotlin, PL/SQL
@@ -60,21 +60,23 @@ with col2:
     st.subheader("Skills")
     st.write(content2)
 
-content3 = "projects "
+content3 = "\nprojects "
 st.header(content3)
 
-col3, empty, col4 = st.columns([2, 0.5, 2])
+col3, empty2, col4 = st.columns([2, 0.5, 2])
 
 df = pandas.read_csv("data.csv", sep=";")
+
 with col3:
     for index, row in df[:2].iterrows():
         st.subheader(row["title"])
         st.write(row["description"])
+        st.image("images/" + row["image"], width=230)
         st.write(f"[source code]({row['url']})")
 
 with col4:
     for index, row in df[2:].iterrows():
         st.subheader(row["title"])
         st.write(row["description"])
+        st.image("images/" + row["image"], width=210)
         st.write(f"[source code]({row['url']})")
-
